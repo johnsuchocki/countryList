@@ -19,7 +19,7 @@ public class CountriesApp {
 				System.out.println("Menu:");
 				System.out.println("Push (1) to display master list");
 				System.out.println("Push (2) to add to list");
-				System.out.println("Push (3) to delete from list - NYI");
+				System.out.println("Push (3) to delete from list");
 				System.out.println("Push (4) to exit");
 				menuInput = userInput.nextLine();
 				inputValid = Validator.validateMenu(menuInput);
@@ -36,6 +36,7 @@ public class CountriesApp {
 				}
 				System.out.println("");
 				break;
+				
 			case "2": // Add to master list
 				String listInput;
 				System.out.println("");
@@ -51,6 +52,7 @@ public class CountriesApp {
 				System.out.println("");
 				ReadWriteDelete.pushToMasterList();
 				break;
+				
 			case "3": // Delete from master list
 				int deleteInput;
 				ArrayList<String> masterListDelete = new ArrayList<>();
@@ -62,8 +64,15 @@ public class CountriesApp {
 					System.out.println(i + " " + masterListDelete.get(i));
 				}
 				deleteInput = Integer.parseInt(userInput.nextLine());
+				if (deleteInput > (masterListDelete.size() - 1)) {
+					System.out.println("Invalid input.");
+					System.out.println("There is no row corresponding to that value.");
+					System.out.println("");
+				} else {
 				ReadWriteDelete.deleteFromMasterList(deleteInput);
+				}
 				break;
+				
 			case "4": // Exit
 				System.out.println("You have exited the Countries App.");
 				System.out.println("See you next time!");
