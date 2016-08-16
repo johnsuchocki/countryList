@@ -41,14 +41,14 @@ public class CountriesApp {
 				String listInput;
 				System.out.println("");
 				System.out.println("WARNING: All inputs must be entered in country then capital pairs!");
-				System.out.println("What country would you like to add to the list?");
+				System.out.println("What COUNTRY would you like to add to the list?");
 				listInput = userInput.nextLine();
 				ReadWriteDelete.writeCountryList(listInput);
 				System.out.println("");
-				System.out.println("What is the capital of that country?");
+				System.out.println("What is the CAPITAL of that country?");
 				listInput = userInput.nextLine();
 				ReadWriteDelete.writeCapitalList(listInput);
-				System.out.println("Input recieved.");
+				System.out.println("Input added to list.");
 				System.out.println("");
 				ReadWriteDelete.pushToMasterList();
 				break;
