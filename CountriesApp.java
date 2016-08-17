@@ -9,11 +9,15 @@ public class CountriesApp {
 		Scanner userInput = new Scanner(System.in);
 		boolean userQuit = false;
 		String menuInput = null;
+		boolean inputValid = false;
+		String listInput;
+		int deleteInput;
+		ArrayList<String> masterListDelete = new ArrayList<>();
 
 		System.out.println("Welcome to Countries List");
 
 		do {// "User has not quit" loop
-			boolean inputValid = false;
+			inputValid = false;
 
 			do {// "User input has not happened or is invalid" loop
 				System.out.println("Menu:");
@@ -36,9 +40,8 @@ public class CountriesApp {
 				}
 				System.out.println("");
 				break;
-				
+
 			case "2": // Add to master list
-				String listInput;
 				System.out.println("");
 				System.out.println("WARNING: All inputs must be entered in country then capital pairs!");
 				System.out.println("What COUNTRY would you like to add to the list?");
@@ -52,27 +55,33 @@ public class CountriesApp {
 				System.out.println("");
 				ReadWriteDelete.pushToMasterList();
 				break;
-				
+
 			case "3": // Delete from master list
-				int deleteInput;
-				ArrayList<String> masterListDelete = new ArrayList<>();
 				masterListDelete = ReadWriteDelete.readMasterList();
-				
+
 				System.out.println("Here are the country/capitals.");
 				System.out.println("Enter the number corresponding to the row you would like to delete:");
 				for (int i = 0; i < masterListDelete.size(); i++) {
 					System.out.println(i + " " + masterListDelete.get(i));
 				}
-				deleteInput = Integer.parseInt(userInput.nextLine());
-				if (deleteInput > (masterListDelete.size() - 1)) {
+				try {
+					deleteInput = Integer.parseInt(userInput.nextLine());
+					if (deleteInput > (masterListDelete.size() - 1)) {
+						System.out.println("Invalid input.");
+						System.out.println("There is no row corresponding to that value.");
+						System.out.println("");
+					} else {
+						ReadWriteDelete.deleteFromMasterList(deleteInput);
+					}
+					break;
+				} catch (NumberFormatException notInt) {
+					notInt.printStackTrace();
 					System.out.println("Invalid input.");
-					System.out.println("There is no row corresponding to that value.");
+					System.out.println("Please enter a number corresponding to a row");
 					System.out.println("");
-				} else {
-				ReadWriteDelete.deleteFromMasterList(deleteInput);
+					break;
 				}
-				break;
-				
+
 			case "4": // Exit
 				System.out.println("You have exited the Countries App.");
 				System.out.println("See you next time!");

@@ -22,7 +22,8 @@ public class ReadWriteDelete {
 				masterListArray.add(location);
 			}
 		} catch (IOException masterExecption) {
-			masterExecption.printStackTrace();
+			//masterExecption.printStackTrace();
+			System.out.println("There are no entries in the list.");
 		}
 		return masterListArray;
 	}// method
@@ -138,15 +139,15 @@ public class ReadWriteDelete {
 				"\\Users\\admin\\jeeneon\\week3notes\\week3notes\\src\\com\\listofcountries\\masterCountryCapitalList.txt");
 		File masterListFile = masterListPath.toFile();
 		ArrayList<String> masterListDelete = new ArrayList<>();
-		
+
 		masterListDelete = ReadWriteDelete.readMasterList();
-		
+
 		masterListDelete.remove(deletor);
 		System.out.println("Row removed.");
 		System.out.println("");
-		
+
 		masterListFile.delete();
-		
+
 		for (int i = 0; i < masterListDelete.size(); i++) {
 			try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(masterListFile, true)))) {
 
